@@ -5,7 +5,7 @@ from google import genai
 from google.genai import types
 from google.genai.errors import ServerError
 
-client = genai.Client()
+client = genai.Client(http_options=types.HttpOptions(timeout=20000))
 
 APOLICES_DB = {
     "AP-1020": {
@@ -121,3 +121,4 @@ if __name__ == "__main__":
         auditoria = avaliar_resposta_agente(caso["pergunta"], resposta, caso["ground_truth"])
         print(f"Auditoria (Eval): {auditoria}")
         time.sleep(3)
+        
